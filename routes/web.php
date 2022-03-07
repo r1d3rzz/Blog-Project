@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [BlogController::class,'index']);
+
+Route::get('/blogs/{blog:slug}', [BlogController::class,'show']);
+
+Route::get('/users/{user:username}', function (User $user) {
+    return view('blogs.index', [
+        'blogs' => $user->blogs
+    ]);
+});
+
+Route::get('/categories/{category:slug}', function (Category $category) {
+    return view('blogs.index', [
+        'blogs' => $category->blogs
+    ]);
 });
