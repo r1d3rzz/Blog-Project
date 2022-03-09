@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Models\Category;
 use App\Models\User;
@@ -20,14 +21,12 @@ Route::get('/', [BlogController::class,'index']);
 
 Route::get('/blogs/{blog:slug}', [BlogController::class,'show']);
 
-Route::get('/users/{user:username}', function (User $user) {
-    return view('blogs.index', [
-        'blogs' => $user->blogs
-    ]);
-});
+Route::get('/register', [AuthController::class,'create'])->middleware('guest');
 
-Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('blogs.index', [
-        'blogs' => $category->blogs
-    ]);
-});
+Route::post('/register', [AuthController::class,'store'])->middleware('guest');
+
+Route::get('/logout', [AuthController::class,'logout'])->middleware('auth');
+
+Route::get('/login', [AuthController::class,'login'])->middleware('guest');
+
+Route::post('/login', [AuthController::class,'post_login'])->middleware('guest');
