@@ -56,4 +56,14 @@ class User extends Authenticatable
     {
         return ucfirst($value);
     }
+
+    public function subscribedBlog()
+    {
+        return $this->belongsToMany(Blog::class);
+    }
+
+    public function isSubscribe($blog)
+    {
+        return auth()->user()->subscribedBlog && auth()->user()->subscribedBlog->contains('id', $blog->id);
+    }
 }

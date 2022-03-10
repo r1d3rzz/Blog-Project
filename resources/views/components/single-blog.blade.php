@@ -10,6 +10,15 @@
                 <a href="/?user={{$blog->author->username}}">{{$blog->author->name}}</a>
                 <span> - {{$blog->created_at->diffForHumans()}}</span>
             </p>
+            @auth
+            <form action="/blogs/{{$blog->slug}}/subscribe" id="subscribe" method="POST">@csrf
+                @if (auth()->user()->isSubscribe($blog))
+                <button type="submit" class="btn btn-danger">Unsubscribe</button>
+                @else
+                <button type="submit" class="btn btn-warning">Subscribe</button>
+                @endif
+            </form>
+            @endauth
             <div class="tags my-3">
                 <a href="/?category={{$blog->category->slug}}"><span
                         class="badge bg-primary">{{$blog->category->name}}</span></a>
