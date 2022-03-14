@@ -52,6 +52,11 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
+    public function setConfirmPasswordAttribute($value)
+    {
+        $this->attributes['confirm_password'] = bcrypt($value);
+    }
+
     public function getNameAttribute($value)
     {
         return ucfirst($value);

@@ -17,6 +17,14 @@
 
                         <x-form.input name="password" type="password" />
 
+                        <div class="mb-3">
+                            <label for="confirm_password">
+                                <h3>Confirm Password</h3>
+                            </label>
+                            <input type="password" name="confirm_password" id="confirm_password" class="form-control">
+                            <x-error name="confirm_password" />
+                        </div>
+
                         <div class="d-flex justify-content-between my-2">
                             <div><input type="submit" value="Register" class="btn btn-primary"></div>
                             <div><input type="reset" value="Cancel" class="btn btn-danger"></div>
