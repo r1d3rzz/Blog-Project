@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class AdminBlogController extends Controller
 {
@@ -16,7 +19,66 @@ class AdminBlogController extends Controller
 
     public function create()
     {
-        return view('admin.create');
+        return view('admin.create', [
+            'categories'=>Category::all()
+        ]);
+    }
+
+    public function store()
+    {
+        $formData = request()->validate([
+            "title" => ['required',Rule::unique('blogs', 'title')],
+            "slug" => ['required',Rule::unique('blogs', 'slug')],
+            "intro" => ['required'],
+            "body" => ['required'],
+            "category_id" => ['required',Rule::exists('categories', 'id')],
+        ]);
+        $formData['user_id'] = auth()->id();
+
+        Blog::create($formData);
+
+        return back()->with('uploded', $formData['title']." is Successfully Uploded");
+    }
+
+    public function blogPublishHandler(Blog $blog)
+    {
+        if ($blog->isShow) {
+            DB::table('blogs')->where('slug', $blog->slug)->update([
+                'isShow' => false
+            ]);
+            return back();
+        } else {
+            DB::table('blogs')->where('slug', $blog->slug)->update([
+                'isShow' => true
+            ]);
+            return back()->with('publish', $blog->title." is Published");
+        }
+    }
+
+    public function create_category()
+    {
+        return view("admin.create_category", [
+            'categories'=>Category::latest()->get()
+        ]);
+    }
+
+    public function store_category()
+    {
+        $formData = request()->validate([
+            "name" => ['required',Rule::unique('categories', 'name')],
+            "slug" => ['required',Rule::unique('categories', 'slug')],
+        ]);
+
+        Category::create($formData);
+
+        return back()->with('addCategory', $formData['name']." is Successfully Added");
+    }
+
+    public function destroy_category(Category $category)
+    {
+        $category->delete();
+
+        return back()->with('delete', $category->name." is Delete Successfully");
     }
 
     public function destroy(Blog $blog)

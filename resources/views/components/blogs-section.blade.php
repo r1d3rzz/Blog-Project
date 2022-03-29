@@ -11,9 +11,11 @@
 
     <div class="row">
         @forelse ($blogs as $blog)
+        @if ($blog->isShow)
         <div class="col-md-4 mb-4">
             <x-blog-card :blog="$blog" />
         </div>
+        @endif
         @empty
         <p class="text-center">Blog Not Found!</p>
         @endforelse

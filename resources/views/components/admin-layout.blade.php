@@ -16,7 +16,7 @@
                     <span class="d-none d-lg-inline">Admin Panel</span>
                 </h1>
 
-                <div class="list-group text-lg-start text-center">
+                <div class="list-group text-lg-start text-center mt-3">
                     <span class="list-group-item disabled d-none d-lg-block">
                         <small>DashBoard</small>
                     </span>
@@ -27,6 +27,10 @@
                     <a href="/admin/blogs/create" class="list-group-item list-group-item-action">
                         <i class="fas fa-solid fa-plus"></i>
                         <span class="d-none d-lg-inline">Create</span>
+                    </a>
+                    <a href="/admin/categories/create/category" class="list-group-item list-group-item-action">
+                        <i class="fas fa-solid fa-puzzle-piece"></i>
+                        <span class="d-none d-lg-inline">Category</span>
                     </a>
                 </div>
             </nav>

@@ -39,6 +39,16 @@ Route::post('/blogs/{blog:slug}/subscribe', [BlogController::class,'subscribeHan
 
 Route::get('/admin/blogs', [AdminBlogController::class,'index'])->middleware('admin');
 
+Route::post('/admin/{blog:slug}/isPublish', [AdminBlogController::class,'blogPublishHandler'])->middleware('admin');
+
 Route::get('/admin/blogs/create', [AdminBlogController::class,'create'])->middleware('admin');
+
+Route::get('/admin/categories/create/category', [AdminBlogController::class,'create_category'])->middleware('admin');
+
+Route::post('/admin/categories/create/category', [AdminBlogController::class,'store_category'])->middleware('admin');
+
+Route::delete('/admin/{category:slug}/delete/category', [AdminBlogController::class,'destroy_category'])->middleware('admin');
+
+Route::post('/admin/blog/store', [AdminBlogController::class,'store'])->middleware('admin');
 
 Route::delete('/admin/{blog:slug}/delete', [AdminBlogController::class,'destroy'])->middleware('admin');

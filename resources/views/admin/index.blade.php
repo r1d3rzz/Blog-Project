@@ -6,6 +6,12 @@
     </div>
     @endif
 
+    @if (session('publish'))
+    <div class="alert alert-warning text-center">
+        {{session('publish')}}
+    </div>
+    @endif
+
     <table class="table table-light table-striped">
         <thead>
             @if ($blogs->count())
@@ -24,7 +30,13 @@
                 <td>{{$blog->title}}</td>
                 <td>{{$blog->intro}}</td>
                 <td>
-                    <button class="btn btn-primary">Pending</button>
+                    <form action="/admin/{{$blog->slug}}/isPublish" method="POST">@csrf
+                        @if ($blog->isShow)
+                        <button class="btn btn-success" type="submit">Published</button>
+                        @else
+                        <button class="btn btn-primary" type="submit">Pending</button>
+                        @endif
+                    </form>
                 </td>
                 <td><button class="btn btn-warning">Edit</button></td>
 
