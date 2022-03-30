@@ -44,4 +44,6 @@ Route::controller(AdminBlogController::class)->group(function () {
     Route::delete('/admin/{category:slug}/delete/category', 'destroy_category')->middleware('admin');
     Route::post('/admin/blog/store', 'store')->middleware('admin');
     Route::delete('/admin/{blog:slug}/delete', 'destroy')->middleware('admin');
+    Route::get('/admin/users', 'users_index')->middleware('admin');
+    Route::delete('/admin/user/{user:username}/delete', 'destroy_user')->middleware('admin');
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -86,5 +87,18 @@ class AdminBlogController extends Controller
         $blog->delete();
 
         return back()->with('delete', $blog->title." is Delete Successfully");
+    }
+
+    public function users_index()
+    {
+        return view('admin.users_index', [
+            'users' => User::latest()->get()
+        ]);
+    }
+
+    public function destroy_user(User $user)
+    {
+        $user->delete();
+        return back()->with('delete', $user->name." is Delete Successfully");
     }
 }

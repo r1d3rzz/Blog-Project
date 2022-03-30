@@ -32,6 +32,10 @@
                         <i class="fas fa-solid fa-puzzle-piece"></i>
                         <span class="d-none d-lg-inline">Category</span>
                     </a>
+                    <a href="/admin/users" class="list-group-item list-group-item-action">
+                        <i class="fas fa-solid fa-users"></i>
+                        <span class="d-none d-lg-inline">Users</span>
+                    </a>
                 </div>
             </nav>
             <main class="col-10 bg-light">
@@ -46,7 +50,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#" class="dropdown-item">User Profile</a>
+                                    <a href="#" class="dropdown-item">{{auth()->user()->name}}</a>
                                 </li>
                                 <li>
                                     <a href="/logout" class="dropdown-item">Logout</a>
@@ -64,4 +68,29 @@
             </main>
         </div>
     </div>
+
+    <script src="/ckEditor/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+				.create( document.querySelector( '#body' ), {
+
+					licenseKey: '',
+
+
+
+				} )
+				.then( editor => {
+					window.editor = editor;
+
+
+
+
+				} )
+				.catch( error => {
+					console.error( 'Oops, something went wrong!' );
+					console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+					console.warn( 'Build id: jd3gko2o0vj0-tyyidfogxwie' );
+					console.error( error );
+				} );
+    </script>
 </x-layout>
