@@ -33,9 +33,11 @@ Install my-project with npm
     
 ## Admin Access
 
+```bash
 If you want to see Admin Panel 
 Please Change users table -> is_admin = 1
 admin can login with auto arrive admin Panel
+```
 
 
 
