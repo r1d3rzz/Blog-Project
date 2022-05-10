@@ -6,9 +6,11 @@
         <div class="row text-center">
 
             @foreach ($randomBlogs as $blog)
+            @if ($blog->isShow)
             <div class="col-md-4 mb-4">
                 <x-blog-card :blog="$blog" />
             </div>
+            @endif
             @endforeach
 
         </div>

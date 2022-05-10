@@ -7,7 +7,7 @@
                     {{session('uploded')}}
                 </div>
                 @endif
-                <form action="/admin/blog/store" method="POST">@csrf
+                <form action="/admin/blog/store" method="POST" enctype="multipart/form-data">@csrf
                     <x-card-wrapper class="mt-0">
                         <x-form.input name="title" />
 
@@ -20,6 +20,8 @@
                             <textarea name="body" id="body" cols="30" rows="10" class="form-control"></textarea>
                             <x-error name="body" />
                         </div>
+
+                        <x-form.input name="thumbnail" type="file" />
 
                         <div class="my-3">
                             <x-form.label name="category" />
