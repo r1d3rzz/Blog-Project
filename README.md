@@ -1,3 +1,44 @@
+
+## Features
+
+- Register / Login / logout Users
+- Subscibe Features
+- Send mail to Subscribers
+- Write Comments in Blog and show Total Comments 
+- with Pagination
+- Create Blogs
+- admin can Control Blogs Pending/Publish and Destroy
+
+## Will be in Future Update Features
+
+- admin can give users row Permission
+- edit User Profile 
+- Blog like / unlike Feature
+## Installation
+
+Install my-project with npm
+
+```bash
+  git clone https://github.com/r1d3rzz/Blog-Project.githttps://github.com/r1d3rzz/Blog-Project.git
+  composer install
+  cp .env-example .env ( change database name )
+  php artisan migrate:fresh --seed
+  php artisan key:generate
+  php artisan storage:link
+
+  php artisan serve 
+```
+
+    
+## Admin Access
+
+If you want to see Admin Panel 
+Please Change users table -> is_admin = 1
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
